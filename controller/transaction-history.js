@@ -18,7 +18,7 @@ router.get('/transactionHistory', urlencodedParser, function(req, res){
 	function transactionHistoryPromise(tokenContractAddress) { 
   	return new Promise((resolve, reject) => {
     	
-        const tokenContract = web3.eth.contract(ABI).at(tokenContractAddress);
+    const tokenContract = web3.eth.contract(ABI).at(tokenContractAddress);
    	var theParams = {fromBlock: 0, toBlock: 'latest'};
    	var allResult = [];
 

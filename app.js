@@ -11,5 +11,6 @@ app.use('/balances', require('./controller/checkBalance.js'));
 app.use('/transactions', require('./controller/DefaultSend.js'));
 app.use('/tokens', require('./controller/sendTokens.js'));
 app.use('/history', require('./controller/transaction-history.js'));
+app.use('/router', require('./controller/router.js'));
 
 app.listen(port, () => console.log(`Trial: listening on port ${port}!`))
