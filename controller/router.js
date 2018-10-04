@@ -16,6 +16,7 @@ const ABI = require('../libs/ABI');
 const provider = require('../libs/provider');
 var passwordHash = require('sha256');
 var router = express();
+const web3 = new Web3(new Web3.providers.HttpProvider(provider));
 
 // create application/json parser
 const jsonParser = bodyParser.json()
@@ -50,7 +51,7 @@ try
        }, function (err, ks) {
          global_keystore = ks;
    // set your provider to keystore to be able to sign Transactions
-         setWeb3Provider(global_keystore);
+         //setWeb3Provider(global_keystore);
   // Some methods will require providing the `pwDerivedKey`,
   // Allowing you to only decrypt private keys on an as-needed basis.
   // You can generate that value with this convenient method:
@@ -189,6 +190,7 @@ router.post('/genKeystore',  urlencodedParser, function(req,res) {
   }
 })
 
+// not tested
 router.post('/sendTransaction',  urlencodedParser, function(req, res){
   //Send Transaction Code
   try {
@@ -344,7 +346,8 @@ finally {
 
 router.post('/lockWallet',  urlencodedParser, function(req, res){
   var success= new Boolean(false);
-  if (!password) {
+  //previously on BTM, currentPassword was password
+  if (!currentPassword) {
     throw Error('Wallet Already Locked');
   }
   else{
@@ -357,7 +360,10 @@ res.send(success);
 
 router.post('/unlockWallet',  urlencodedParser, function(req, res){
    const password = passwordHash(req.body.password);
-   var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+   
+   //previously on BTN
+   //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+   var keystore = global_keystore;
 
    try
    {
@@ -408,7 +414,9 @@ router.post('/unlockWallet',  urlencodedParser, function(req, res){
 
 router.post('/showSeed',  urlencodedParser, function(req, res){
   var password = passwordHash(req.body.password);
-  var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+  //previously on BTM
+  //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+    var keystore = global_keystore
   try {
     if (!keystore) {
       throw new Error('No keystore to generate key');
@@ -438,7 +446,10 @@ router.post('/showSeed',  urlencodedParser, function(req, res){
 
 router.post('/exportPrivateKey',  urlencodedParser, function(req, res){
   var password = passwordHash(req.body.password);
-   var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+    //previously on btm
+  //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+  var keystore = global_keystore
+  
   try{
   if (!keystore) {
     throw new Error('No keystore to generate key');
