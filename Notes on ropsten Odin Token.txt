@@ -9,3 +9,30 @@ Owner
 Public Key: 0xcd8e3e5b4a92cb8689da99026f11624d59b45a5c
 Private Key: 1F276EB3CDB1688582E8FDF5F518C1136CA699D76F3E9495620B942A7BD403AF
 
+Test Account One:
+email: test@gmail.com
+password: testPassword
+{
+    "result": {
+        "address": "0x348c0753b841873e03f758e23bb203a5c6b4842a",
+        "walletID": "XE0264YXZNVT645HSSEHWZIC5DAMNS8GB3E",
+        "seedPhrase": "brother then dream rule winter river square garbage note abstract asset security"
+    },
+    "global_keystore": "{\"encSeed\":{\"encStr\":\"wovu3w6PwPjhYqNNZba3UMOJ7J6homGYdhgycm67M2ibEyDuIcWMxY/KYGJB1XkKg6lY9riuV4w/fXoX+vjtlR09oXkZpgqCWF3IFh973XRLBFrniiVfO1fhDOZxigWciOIL/EmvHoaoPf9su43B+jFep3IeBnQKkHQL5s0oUF+nK8NyWf99dw==\",\"nonce\":\"0340wxX6wHRQsX96n6d/ffJUiFkDRHNR\"},\"encHdRootPriv\":{\"encStr\":\"3PnKWzje13qNdlTPkngx64WnZAISRyKCfAc3ieppk4las41LsYml7TFyUj/TmWfZ39yGQKUneVir0WIdcPXsLpivZ7chmlDrMaVdqzMBqxE0UzvvWSzIzzFUeaklOc9FjUPvP0QP+JKu1RvqZNh+4wgs9uCghyBPESGAeEmd6A==\",\"nonce\":\"GV95jdgsjBvyC3BAyxVFyiJvUyCkIoYL\"},\"addresses\":[\"348c0753b841873e03f758e23bb203a5c6b4842a\"],\"encPrivKeys\":{\"348c0753b841873e03f758e23bb203a5c6b4842a\":{\"key\":\"ze6P9iceuPv/xnwWbDiWD17aqsBPYzfSSy8wd2+2pG+r0/hPYHfB9Qq1H72BhUDq\",\"nonce\":\"FNur7x+obYYKzZxT6BabQWiooZfoyiU/\"}},\"hdPathString\":\"m/44'/60'/0'/0\",\"salt\":\"0k8vIX/yd/7bvZR/1mS/ysRit2QLzf53zpY8V2FCL9U=\",\"hdIndex\":1,\"version\":3}",
+    "status": true
+}
+
+Test Account Two:
+email: test2@gmail.com
+password: testPassword2
+{
+    "result": {
+        "address": "0x7de29bb3bde1df0f4589a3c52a96786c72a4f744",
+        "walletID": "XE27EPDEVOEO55GV2PN5LSR32Z52KTDYCZO",
+        "seedPhrase": "memory pluck blanket sibling piano improve pudding pull step disease ask solid"
+    },
+    "global_keystore": "{\"encSeed\":{\"encStr\":\"3V7J6BeD2kwQKGysaMqZfUcTgK4YeU/fQwa1jfWJsmz29AOL7bKY0ct/hezrxRVR8eL9g/oFd+XoaHtX2bfvpCwcNOiqVdlRJJrzK68hIHagjOUcrXY5wNc5LgnVU/stZGGmqzSGtR63klCTwVlYArsX//gZtUzVel5+XX9dJ6VaWV69qAp/bg==\",\"nonce\":\"Jd+2ocrVGg34KKM8aJGf1WcxLEbRiqg4\"},\"encHdRootPriv\":{\"encStr\":\"tNQNNlSU8CNElk3bG48id29RSoTt8ae58oXNvuxXKf8AprppDazoAskNDGFsqr6GsQBdU5Rk/2QBmbX2IrtBpiUtvdWPnlJhmyccZZ1cLvHsr1ZrjFiET4hD46KqWTb6ObzCJ1RVF07msT27RdIHwAlwwBMOOimGvGxFSdryuw==\",\"nonce\":\"L9aqD3DAuC2QV9bQogIT2GtpmI4ZQ0M+\"},\"addresses\":[\"7de29bb3bde1df0f4589a3c52a96786c72a4f744\"],\"encPrivKeys\":{\"7de29bb3bde1df0f4589a3c52a96786c72a4f744\":{\"key\":\"oQY93QEQDhM8yTLmGWyo7r6NWZ2ODkDVNZulC5zzJb43L7Mtfvp5a6eClycMN/QR\",\"nonce\":\"L0L0nuskfY7KQPAl1SAjIUnWbBPKga+J\"}},\"hdPathString\":\"m/44'/60'/0'/0\",\"salt\":\"NP2PUj12ZxIBCDlsbuB3gV6gk4FC7Axk0voFPCuW7AI=\",\"hdIndex\":1,\"version\":3}",
+    "status": true
+}
+
+

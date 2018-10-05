@@ -415,8 +415,8 @@ router.post('/unlockWallet',  urlencodedParser, function(req, res){
 router.post('/showSeed',  urlencodedParser, function(req, res){
   var password = passwordHash(req.body.password);
   //previously on BTM
-  //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
-    var keystore = global_keystore
+  var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+  //var keystore = global_keystore
   try {
     if (!keystore) {
       throw new Error('No keystore to generate key');
@@ -447,8 +447,8 @@ router.post('/showSeed',  urlencodedParser, function(req, res){
 router.post('/exportPrivateKey',  urlencodedParser, function(req, res){
   var password = passwordHash(req.body.password);
     //previously on btm
-  //var keystore = lightwallet.keystore.deserialize(req.body.keystore);
-  var keystore = global_keystore
+  var keystore = lightwallet.keystore.deserialize(req.body.keystore);
+  //var keystore = global_keystore
   
   try{
   if (!keystore) {
@@ -467,7 +467,9 @@ router.post('/exportPrivateKey',  urlencodedParser, function(req, res){
       if (err) return reject(err);
       var address = keystore.getAddresses()[0];
       var returnKey = keystore.exportPrivateKey(address,pwDerivedKey,hdPath);
+      console.log("return key is " + returnKey);
       return resolve(returnKey);
+      
     })
   })
   privateKeyPromise.then(function(returnKey){
