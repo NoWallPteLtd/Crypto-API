@@ -129,60 +129,64 @@ router.post('/genKeystore',  urlencodedParser, function(req,res) {
 
    var resObjItems = {};
    var promise = new Promise(function (resolve, reject) {
-   const password = passwordHash(req.body.password);
-   const seedPhrase = req.body.seed;
-   lightwallet.keystore.createVault({
-     password: password,
-     seedPhrase: seedPhrase, // Optionally provide a 12-word seed phrase
-     // salt: fixture.salt,     // Optionally provide a salt.// A unique salt will be generated otherwise.
-     hdPathString: hdPath    // Optional custom HD Path String
-   }, function (err, ks) {
-    global_keystore = ks;
-    //resolve(global_keystore.serialize())
-   // setWeb3Provider(ks);
-     // Some methods will require providing the `pwDerivedKey`,
-     // Allowing you to only decrypt private keys on an as-needed basis.
-     // You can generate that value with this convenient method:
-     //ks = new lightwallet.keystore(seedPhrase, password);
-     console.log(ks);
-     setWeb3Provider(global_keystore);
-     //var address = '';
-     //var Indexer = 0;
-    global_keystore.keyFromPassword(password, function (err, pwDerivedKey) {
-       if (err) throw err;
-       //ks = new lightwallet.keystore(seedPhrase, pwDerivedKey);
-       //console.log(ks);
-       // generate five new address/private key pairs
-       // the corresponding private keys are also encrypted
-      global_keystore.generateNewAddress(pwDerivedKey, 1);
-       //address = ks.getAddresses();
-       //console.log(address);
-       //var resObjItems= {};
-       const address = global_keystore.getAddresses().slice(-1)[0];
-       console.log(address);
+        const password = passwordHash(req.body.password);
+        const seedPhrase = req.body.seed;
+        lightwallet.keystore.createVault({
+          password: password,
+          seedPhrase: seedPhrase, // Optionally provide a 12-word seed phrase
+          // salt: fixture.salt,     // Optionally provide a salt.// A unique salt will be generated otherwise.
+          hdPathString: hdPath    // Optional custom HD Path String
+        }, function (err, ks) {
+          global_keystore = ks;
+          //resolve(global_keystore.serialize())
+        // setWeb3Provider(ks);
+          // Some methods will require providing the `pwDerivedKey`,
+          // Allowing you to only decrypt private keys on an as-needed basis.
+          // You can generate that value with this convenient method:
+          //ks = new lightwallet.keystore(seedPhrase, password);
+          console.log(ks);
+          setWeb3Provider(global_keystore);
+          //var address = '';
+          //var Indexer = 0;
+          global_keystore.keyFromPassword(password, function (err, pwDerivedKey) {
+            
+            if (err) throw err;
+            //if (err) reject (err);
+            //ks = new lightwallet.keystore(seedPhrase, pwDerivedKey);
+            //console.log(ks);
+            // generate five new address/private key pairs
+            // the corresponding private keys are also encrypted
+            global_keystore.generateNewAddress(pwDerivedKey, 1);
+            //address = ks.getAddresses();
+            //console.log(address);
+            //var resObjItems= {};
+            const address = global_keystore.getAddresses().slice(-1)[0];
+            console.log(address);
 
-      resObjItems.address = global_keystore.getAddresses().slice(-1)[0]
-      resObjItems.keystore = global_keystore.serialize();
-      //var prv_key = ks.exportPrivateKey(address, pwDerivedKey);
-      //resObjItems.indexer = ks.getAddresses().length
-     // retrieveDetails.push(resObjItems)
-      resolve(resObjItems);
+            resObjItems.address = global_keystore.getAddresses().slice(-1)[0]
+            resObjItems.keystore = global_keystore.serialize();
+            //var prv_key = ks.exportPrivateKey(address, pwDerivedKey);
+            //resObjItems.indexer = ks.getAddresses().length
+          // retrieveDetails.push(resObjItems)
+            resolve(resObjItems);
 
-     global_keystore.passwordProvider = function (callback) {
-         const pw = prompt('Please enter keystore password', 'Password');
-         callback(null, pw);
-       };
-       currentPassword = password;
-       // Now set ks as transaction_signer in the hooked web3 provider
-       // and you can start using web3 using the keys/addresses in ks!
-     });
-    });
+          global_keystore.passwordProvider = function (callback) {
+              const pw = prompt('Please enter keystore password', 'Password');
+              callback(null, pw);
+            };
+            currentPassword = password;
+            // Now set ks as transaction_signer in the hooked web3 provider
+            // and you can start using web3 using the keys/addresses in ks!
+          });
+        });
     });
     promise.then(function(resObjItems) {
-    res.send(resObjItems);
-    });
+      {res.send(resObjItems);}
+     })
+     .catch(err=>{res.send(err.message);console.log(err)})
+     ;
 } catch (err) {
-    const errorString = `genKeystore error - ${err}`;
+     const errorString = `genKeystore error - ${err}`;
      console.log(err.message + errorString);
   }
   finally{
@@ -222,6 +226,7 @@ router.post('/sendTransaction',  urlencodedParser, function(req, res){
     };
     //
     const ksPassword = password;
+    
     if (!keystore) {
       throw new Error('No keystore found - please create wallet');
     }
