@@ -2,32 +2,16 @@
 const Web3 = require('web3');
 const provider = require('../libs/provider');
 const web3 = new Web3(new Web3.providers.HttpProvider(provider));
-
 const ABI = require('../libs/ABI');
 
 //Odin Contract Address
 const contractAddress = require('../libs/contractAddress');
-const Tx = require('ethereumjs-tx');
 
-// const privateKey = req.body.privateKey;
-// var pkBuffer = new Buffer.from(privateKey, 'hex')
-// const tokenAmount  = req.body.amount;
-// const toAddress = req.body.toAddress;
+const Tx = require('ethereumjs-tx');
 const gasPrice = web3.eth.gasPrice.toNumber() * 2;
-// const fromAddress = req.body.fromAddress;
 var gasLimit = 200000;
 
 const contract = web3.eth.contract(ABI).at(contractAddress);
-
-//privateKey = '1F276EB3CDB1688582E8FDF5F518C1136CA699D76F3E9495620B942A7BD403AF'
-
-
-// var pkBuffer = new Buffer.from(privateKey, 'hex')
-
-
-
-//odin
-// const odinContract = web3.eth.contract(ABI);
 
 module.exports = function sendTokenPromise(tokenContractAddress, sendToAddress, sendAmount, fromAddress, privateKey) {
 
